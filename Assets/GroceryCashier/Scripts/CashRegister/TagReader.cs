@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class TagReader : MonoBehaviour
 {
@@ -11,16 +10,10 @@ public class TagReader : MonoBehaviour
     public float rayLenght = 0.3f;
     public LayerMask rayLayerMask;
     [Range(0f, 1f)] public float rayCooldown = .1f;
-    private GameObject currentObject;
-    public UnityEvent<GameObject> OnObjectDetection;
-
+    private PriceTag currentObject;
+    private PriceTag lastObject;
     private float cooldownTimer;
-    private GameObject lastObject;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public Action<PriceTag> OnTagDetected;
 
     // Update is called once per frame
     void Update()
@@ -28,13 +21,17 @@ public class TagReader : MonoBehaviour
         // Doing raycast
         foreach (RaycastHit hit in TargetObjects())
         {
-            currentObject = hit.collider.gameObject;
-            cooldownTimer = rayCooldown;
+            currentObject = hit.collider.GetComponent<PriceTag>();
+            if(currentObject != null)
+                cooldownTimer = rayCooldown;
         }
 
         // Invokeing OnDetection
         if (currentObject != null && currentObject != lastObject)
-            OnObjectDetection.Invoke(currentObject);
+        {
+            Debug.Log("[TagReader] " + currentObject.itemName);
+            OnTagDetected.Invoke(currentObject);
+        }
 
         // Storing old object so it dosent get invoked again
         if (currentObject != null)
