@@ -55,24 +55,18 @@ public class TagReader : MonoBehaviour
         Gizmos.color = Color.red;
 
         foreach (Quaternion direction in RayDirections(rayType))
-        {
-            Gizmos.DrawLine(transform.position, transform.position + (direction * transform.forward * rayLenght));
-        }
+            Gizmos.DrawLine(transform.position, transform.position + (transform.rotation * direction * Vector3.forward * rayLenght));
 
         Gizmos.color = Color.green;
         foreach (RaycastHit hit in TargetObjects())
-        {
             Gizmos.DrawLine(transform.position, (hit.point));
-
-            //Gizmos.DrawRay(hit);
-        }
     }
 
     private IEnumerable<RaycastHit> TargetObjects()
     {
         foreach (Quaternion direction in RayDirections(rayType))
         {
-            Ray r = new Ray(transform.position, direction * transform.forward);
+            Ray r = new Ray(transform.position, transform.rotation * direction * Vector3.forward);
             if (Physics.Raycast(r, out RaycastHit ray, rayLenght, rayLayerMask.value))
             {
                 yield return ray;
