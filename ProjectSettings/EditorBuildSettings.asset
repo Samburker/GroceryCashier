@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GroceryCashier/Scenes/00_Menu.unity
+    guid: be81f469d10f2a34483f6aee12dd10ee
+  - enabled: 1
+    path: Assets/GroceryCashier/Scenes/01_GroceryStore.unity
+    guid: 95fc9fba928a7d24e9272c2cfaa06419
   m_configObjects: {}
