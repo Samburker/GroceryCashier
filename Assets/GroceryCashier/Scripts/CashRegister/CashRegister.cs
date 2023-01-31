@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class CashRegister : MonoBehaviour
 {
@@ -19,12 +21,15 @@ public class CashRegister : MonoBehaviour
 
     [Header("Gameplay")]
     public string priceUnit = "€";
+    private ScrollRect scroll;
 
 
     // Start is called before the first frame update
     void Start()
     {
         ResetSales();
+        scroll = itemList.GetComponentInParent<ScrollRect>();
+        scroll.verticalNormalizedPosition = 0;
     }
 
     public void ResetSales()
@@ -45,8 +50,11 @@ public class CashRegister : MonoBehaviour
 
     private void OnTagDetected(PriceTag tag)
     {
+        // Beep
         if(audioSource)
             audioSource.PlayOneShot(okAudio);
+
+        // Adding line to display
         RegisterLine line = Instantiate(itemListLinePrefab, itemList.transform);
         line.itemName.text = tag.itemName;
         switch (tag.priceType)
@@ -58,7 +66,9 @@ public class CashRegister : MonoBehaviour
                 line.itemPrice.text = Mathf.Round((tag.itemPrice * tag.itemWeight * 100))/100f + " " + priceUnit;
                 break;
         }
-        
+
+        //Scolling down
+        scroll.normalizedPosition = new Vector2(0, 0);
     }
 
 

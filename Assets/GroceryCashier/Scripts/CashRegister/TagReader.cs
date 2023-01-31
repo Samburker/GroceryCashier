@@ -26,12 +26,9 @@ public class TagReader : MonoBehaviour
                 cooldownTimer = rayCooldown;
         }
 
-        // Invokeing OnDetection
+        // Invoking OnDetection
         if (currentObject != null && currentObject != lastObject)
-        {
-            Debug.Log("[TagReader] " + currentObject.itemName);
             OnTagDetected.Invoke(currentObject);
-        }
 
         // Storing old object so it dosent get invoked again
         if (currentObject != null)
