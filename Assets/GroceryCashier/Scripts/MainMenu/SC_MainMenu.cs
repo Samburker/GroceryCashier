@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class SC_MainMenu : MonoBehaviour
 {
+    public GameObject MainMenu;
+   
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayNowButton()
     {
-        
+        // Play Now Button has been pressed, here you can initialize your game 
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+
+    public void QuitButton()
+    {
+        // Quit Game
+        Application.Quit();
     }
 }
