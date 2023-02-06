@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Singleton { get; private set; }
+    public static PlayerInputs Inputs { get; private set; }
     public ScreenFade fade;
 
     private void Awake()
