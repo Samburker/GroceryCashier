@@ -56,25 +56,18 @@ public class CashRegister : MonoBehaviour
 
         // Adding line to display
         RegisterLine line = Instantiate(itemListLinePrefab, itemList.transform);
-        line.itemName.text = tag.itemName;
-        switch (tag.priceType)
+        line.itemName.text = tag.item.name;
+        switch (tag.item.priceType)
         {
-            case PriceTag.PriceType.Unit:
-                line.itemPrice.text = Mathf.Round((tag.itemPrice * 100)) / 100f + " " + priceUnit;
+            case ShoppingItem.PriceType.Unit:
+                line.itemPrice.text = Mathf.Round((tag.item.itemPrice * 100)) / 100f + " " + priceUnit;
                 break;
-            case PriceTag.PriceType.Weight:
-                line.itemPrice.text = Mathf.Round((tag.itemPrice * tag.itemWeight * 100))/100f + " " + priceUnit;
+            case ShoppingItem.PriceType.Weight:
+                line.itemPrice.text = Mathf.Round((tag.item.itemPrice * tag.item.itemWeight * 100))/100f + " " + priceUnit;
                 break;
         }
 
         //Scolling down
         scroll.normalizedPosition = new Vector2(0, 0);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

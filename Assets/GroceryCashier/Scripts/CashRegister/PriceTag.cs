@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class PriceTag : MonoBehaviour
 {
-    public enum PriceType { Unit, Weight }
-
-    public string itemName;
-    public float itemPrice;
-    public PriceType priceType;
-    public float itemWeight;
+    public ShoppingItem item;
 }

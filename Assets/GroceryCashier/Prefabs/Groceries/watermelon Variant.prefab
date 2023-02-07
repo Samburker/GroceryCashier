@@ -111,10 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4f18ab0ccd9fc4c9bcb784aa41c7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Watermelon
-  itemPrice: 2.5
-  priceType: 1
-  itemWeight: 2.57
+  item: {fileID: 11400000, guid: 8526cb979f27fae4fb803ba72f1a9076, type: 2}
 --- !u!1001 &291465256464463823
 PrefabInstance:
   m_ObjectHideFlags: 0
