@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,4 +14,15 @@ public class ShoppingItem : ScriptableObject
     public float itemWeightMin;
     [FormerlySerializedAs("itemWeight")]
     public float itemWeightMax;
+
+    public void Instantiate(Vector3 position, Quaternion rotation)
+    {
+        GameObject go = Instantiate(prefab);
+        go.transform.position = position;
+        go.transform.rotation = rotation;
+        go.transform.localScale = Vector3.one;
+
+        var tag = go.AddComponent<PriceTag>();
+        tag.item = this;
+    }
 }

@@ -7,7 +7,8 @@ public class ShoppingList : ScriptableObject
 {
     public int wantedItemsMin;
     public int wantedItemsMax;
-
+    [Space(10)]
+    [Header("Acceptable items")]
     public List<ShoppingListItem> items;
 
     [System.Serializable]
@@ -15,7 +16,8 @@ public class ShoppingList : ScriptableObject
     {
         public bool required;
         public bool steal;
-        [Range(0, 1f)] public float probability;
+        [Tooltip("Probability %")]
+        [Range(0, 100f)] public float probability;
         public List<ShoppingItem> variants;
     }
 }
