@@ -63,7 +63,7 @@ public class CashRegister : MonoBehaviour
                 line.itemPrice.text = Mathf.Round((tag.item.itemPrice * 100)) / 100f + " " + priceUnit;
                 break;
             case ShoppingItem.PriceType.Weight:
-                line.itemPrice.text = Mathf.Round((tag.item.itemPrice * tag.item.itemWeight * 100))/100f + " " + priceUnit;
+                line.itemPrice.text = Mathf.Round((tag.item.itemPrice * tag.ItemWeight * 100))/100f + " " + priceUnit;
                 break;
         }
 

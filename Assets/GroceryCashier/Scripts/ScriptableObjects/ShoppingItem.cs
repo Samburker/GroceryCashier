@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "ShoppingItem", menuName = "McGreedy/ShoppingItem", order = 1)]
 public class ShoppingItem : ScriptableObject
@@ -11,5 +10,7 @@ public class ShoppingItem : ScriptableObject
     public bool restricted;
     public float itemPrice;
     public PriceType priceType;
-    public float itemWeight;
+    public float itemWeightMin;
+    [FormerlySerializedAs("itemWeight")]
+    public float itemWeightMax;
 }
