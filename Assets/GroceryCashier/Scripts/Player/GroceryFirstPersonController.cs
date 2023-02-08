@@ -81,6 +81,8 @@ public class GroceryFirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_input == null)
+            _input = PlayerInputs.Singleton;
         JumpAndGravity();
         GroundedCheck();
         Move();

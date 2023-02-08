@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[DefaultExecutionOrder(-10)]
 public class PlayerInputs : MonoBehaviour
 {
     public static PlayerInputs Singleton { get; private set; }
