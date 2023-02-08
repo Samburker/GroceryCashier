@@ -248,11 +248,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26eebc93e68da3b499c0e309ad497aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPause: 0
+  onMenu: 0
   look: {x: 0, y: 0}
   move: {x: 0, y: 0}
   jump: 0
   sprint: 0
-  menuOpen: 0
 --- !u!114 &1831614215605554531
 MonoBehaviour:
   m_ObjectHideFlags: 0

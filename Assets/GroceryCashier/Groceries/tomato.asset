@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbe14df09e2e9934cada4528ba91b31e, type: 3}
-  m_Name: tomato
+  m_Name: Tomato
   m_EditorClassIdentifier: 
   prefab: {fileID: 1385929999214848134, guid: 7dd08dd9ecd0e374b82f197b4d8d078e, type: 3}
   restricted: 0

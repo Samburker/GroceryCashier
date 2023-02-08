@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConveyerBelt : MonoBehaviour
 {
-
+    public bool stopped;
     public float beltSpeed;
     Rigidbody rigidBody;
 
@@ -17,8 +17,15 @@ public class ConveyerBelt : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (stopped)
+            return;
         Vector3 pos = rigidBody.position;
         rigidBody.position -= transform.forward * beltSpeed * Time.fixedDeltaTime;
         rigidBody.MovePosition(pos);
+    }
+
+    public void StoppingItems(int count)
+    {
+        stopped = count > 0;
     }
 }
