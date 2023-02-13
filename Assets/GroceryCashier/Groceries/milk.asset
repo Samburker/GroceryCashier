@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe14df09e2e9934cada4528ba91b31e, type: 3}
   m_Name: Milk
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4422453221555082605, guid: e6a358e157d37274a88da03477ec674e, type: 3}
   restricted: 0
   itemPrice: 0
   priceType: 0
