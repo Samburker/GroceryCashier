@@ -16,3 +16,9 @@ MonoBehaviour:
   shoppingList: {fileID: 11400000, guid: 042aa68676241d84fb161f509d340dbb, type: 2}
   startTime: 6.85
   endTime: 14.15
+  messageOfTheDay: 'Welcome
+
+    This is your first day at MacGreedy''s. Just sell
+    things, it is not rocket science.'
+  cigarets: 0
+  security: 0

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: GameDay 7
   m_EditorClassIdentifier: 
   shopInventory: {fileID: 11400000, guid: b3620e52c59a465498ee726160ffb59b, type: 2}
-  shoppingList: {fileID: 0}
-  startTime: 14.25
-  endTime: 0
+  shoppingList: {fileID: 11400000, guid: 042aa68676241d84fb161f509d340dbb, type: 2}
+  startTime: 6.85
+  endTime: 14.15
+  messageOfTheDay: 
+  cigarets: 1
+  security: 1
