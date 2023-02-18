@@ -16,7 +16,9 @@ MonoBehaviour:
   shoppingList: {fileID: 11400000, guid: 042aa68676241d84fb161f509d340dbb, type: 2}
   startTime: 6.85
   endTime: 14.15
-  messageOfTheDay: Thanks for hard working. We got the permission to sell some age
-    restricted products, don't sell them to underage customers.
+  messageOfTheDay: 'Thanks for hard working.
+
+    We got the permission to sell some
+    age restricted products, don''t sell them to underage customers.'
   cigarets: 1
   security: 0
