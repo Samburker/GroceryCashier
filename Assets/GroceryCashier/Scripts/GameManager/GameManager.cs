@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Singleton { get; private set; }
     public ScreenFade fade;
 
+    public int day = 0;
+    public GameDay[] gameDays;
+
+
     private void Awake()
     {
         DontDestroyOnLoad(transform);

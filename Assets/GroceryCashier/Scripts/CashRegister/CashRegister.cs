@@ -22,7 +22,8 @@ public class CashRegister : MonoBehaviour
     [Header("Gameplay")]
     public string priceUnit = "€";
     private ScrollRect scroll;
-
+    public CheckoutCounterDesk checkoutCounter;
+    public ItemSpawner itemSpawner;
 
     // Start is called before the first frame update
     void Start()

@@ -393,6 +393,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fade: {fileID: 1322591242462246777}
+  day: 0
+  gameDays:
+  - {fileID: 11400000, guid: 87623305ad1522d4f8b24056063fe20e, type: 2}
+  - {fileID: 11400000, guid: 3f73a7663d1f17d46915a7e0cec5b152, type: 2}
+  - {fileID: 11400000, guid: 8589f24f6125c4f42a73e0cb8e0ea30f, type: 2}
+  - {fileID: 11400000, guid: cfaccbf94f78eb8418520d21663bd000, type: 2}
+  - {fileID: 11400000, guid: 7b6f14a32361ccd4cb3df858637f2d7b, type: 2}
+  - {fileID: 11400000, guid: 151a0ba3f2a6a4b41b9f9d6e334e3942, type: 2}
+  - {fileID: 11400000, guid: 9c9b8df55afd38e40b7d6b388a04d369, type: 2}
+  - {fileID: 11400000, guid: 8b1fcb1e77eede14eac419d6db0e5bab, type: 2}
+  - {fileID: 11400000, guid: 89bd9e7501b147f43a13b34e6b35cb5b, type: 2}
+  - {fileID: 11400000, guid: dd7e81e294b3aac4290dc9eb914202ba, type: 2}
 --- !u!114 &1322591242462246777
 MonoBehaviour:
   m_ObjectHideFlags: 0
