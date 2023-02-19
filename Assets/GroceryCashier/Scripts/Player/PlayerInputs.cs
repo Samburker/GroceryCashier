@@ -15,6 +15,7 @@ public class PlayerInputs : MonoBehaviour
 
     [Header("Input values")]
     public Vector2 look;
+    public Vector2 rotate;
     public Vector2 move;
     public bool jump;
     public bool sprint;
@@ -22,6 +23,10 @@ public class PlayerInputs : MonoBehaviour
 
     internal bool analogMovement;
     private PlayerInput _playerInput;
+
+    internal Action<bool> pickupButton;
+    internal Action<bool> rotateButton;
+    internal bool rotateMode;
 
     #region Unity callbacks
     private void Awake()
@@ -55,16 +60,23 @@ public class PlayerInputs : MonoBehaviour
     }
     private void OnLook(InputValue value)
     {
-        look = AcceptInputs() ? value.Get<Vector2>() : Vector2.zero;
+        look = AcceptInputs() && !rotateMode ? value.Get<Vector2>() : Vector2.zero;
+        rotate = AcceptInputs() && rotateMode ? value.Get<Vector2>() : Vector2.zero;
     }
     private void OnMove(InputValue value)
     {
         move = AcceptInputs() ? value.Get<Vector2>() : Vector2.zero;
     }
 
-    private void OnFire(InputValue value)
+    private void OnPickup(InputValue value)
     {
         UpdateMouseLock();
+        pickupButton?.Invoke(value.isPressed);
+    }
+    private void OnRotate(InputValue value)
+    {
+        UpdateMouseLock();
+        rotateButton?.Invoke(value.isPressed);
     }
 
     //public Vector2 GetLookInput()

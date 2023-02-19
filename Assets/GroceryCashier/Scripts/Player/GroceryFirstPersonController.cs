@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -68,9 +69,12 @@ public class GroceryFirstPersonController : MonoBehaviour
 
     #region Unity callbacs
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+    }
+    private void Start()
+    {
         _input = PlayerInputs.Singleton;
 
         // reset our timeouts on start
@@ -224,6 +228,13 @@ public class GroceryFirstPersonController : MonoBehaviour
         if (lfAngle < -360f) lfAngle += 360f;
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
+    }
+
+    internal void SetPositionAndRotation(Vector3 position, Quaternion rotation)
+    {
+        _controller.enabled = false;
+        transform.SetPositionAndRotation(position, rotation);
+        _controller.enabled = true;
     }
 
     private void OnDrawGizmosSelected()
