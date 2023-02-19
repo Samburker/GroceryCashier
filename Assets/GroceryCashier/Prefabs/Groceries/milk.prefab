@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4785434337508299299}
   - component: {fileID: 5331774838192772720}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Milk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,15 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93a87b0229b67949b02d8542251278e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.03
+      value: 0.041403
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93a87b0229b67949b02d8542251278e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.07026477
+      value: 0.09697241
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93a87b0229b67949b02d8542251278e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.03
+      value: 0.041403
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93a87b0229b67949b02d8542251278e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93a87b0229b67949b02d8542251278e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.0975
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e93a87b0229b67949b02d8542251278e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -115,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e93a87b0229b67949b02d8542251278e, type: 3}
       propertyPath: m_Name
       value: milk
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e93a87b0229b67949b02d8542251278e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93a87b0229b67949b02d8542251278e, type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157008917911207079}
   - component: {fileID: 6172102775436106881}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Watermelon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4baae9173f9bd1f4bb99231f944d14bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.045
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4baae9173f9bd1f4bb99231f944d14bd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4baae9173f9bd1f4bb99231f944d14bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4baae9173f9bd1f4bb99231f944d14bd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -115,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4baae9173f9bd1f4bb99231f944d14bd, type: 3}
       propertyPath: m_Name
       value: watermelon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4baae9173f9bd1f4bb99231f944d14bd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4baae9173f9bd1f4bb99231f944d14bd, type: 3}

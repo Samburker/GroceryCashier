@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2940239052665454352}
   - component: {fileID: 1791169370105401390}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Beer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8305aade73d2b9844b72f2ba154a5975, type: 3}
       propertyPath: m_Name
       value: beer can
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8305aade73d2b9844b72f2ba154a5975, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8305aade73d2b9844b72f2ba154a5975, type: 3}
