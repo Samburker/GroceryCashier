@@ -71,7 +71,8 @@ public class PickUpController : MonoBehaviour
             MoveObject();
             RotateObject();
         }
-        _inputs.rotateMode = heldObject != null && _rotating;
+        if(_inputs != null)
+            _inputs.rotateMode = heldObject != null && _rotating;
     }
 
     void PickupObject(GameObject pickObj)
