@@ -7,7 +7,7 @@ public class CheckoutCounterDesk : MonoBehaviour
 {
     public GameObject cigaretteBelt;
     public GameObject cigaretteCover;
-    public GameObject securitySystem;
+    public GameObject securityDisplay;
     public GameObject securityCanvas;
     public GameObject separatorObject;
 
@@ -24,7 +24,7 @@ public class CheckoutCounterDesk : MonoBehaviour
     {
         cigaretteBelt.SetActive(cigarette);
         cigaretteCover.SetActive(!cigarette);
-        securitySystem.SetActive(security);
+        securityDisplay.SetActive(security);
         securityCanvas.SetActive(security);
         separatorObject.transform.rotation = separator ? Quaternion.Euler(-90, 0, 12f) : Quaternion.Euler(-90, 0, -12f);
     }

@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cigaretteBelt: {fileID: 7358910575558906350}
   cigaretteCover: {fileID: 6939749494646477022}
-  securitySystem: {fileID: 177128432187159650}
+  securityDisplay: {fileID: 177128432187159650}
   securityCanvas: {fileID: 3765019967392102563}
   separatorObject: {fileID: 755632447066152789}
   cigarette: 0
