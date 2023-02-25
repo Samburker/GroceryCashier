@@ -9,5 +9,6 @@ public class SceneDescriptor : MonoBehaviour
     public GameObject[] playerSpawnpoints;
     public CashRegister[] cashRegisters;
     public GroceryCustomer[] customers;
+    public Transform[] randomItemPositions;
     public float respawnHeight = -10f;
 }
