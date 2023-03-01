@@ -9,7 +9,7 @@ public class PlayerInputs : MonoBehaviour
 {
     public static PlayerInputs Singleton { get; private set; }
 
-    [Header("Settings")]
+    [Header("Status")]
     public bool onPause = false;
     public bool onMenu = false;
 
@@ -19,7 +19,7 @@ public class PlayerInputs : MonoBehaviour
     public Vector2 move;
     public bool jump;
     public bool sprint;
-    public Action<bool> pauseMenu;
+    public Action<bool> OnPauseStatusChanges;
 
     internal bool analogMovement;
     private PlayerInput _playerInput;
@@ -41,8 +41,9 @@ public class PlayerInputs : MonoBehaviour
     {
         if (pause)
         {
+            // Forcing game to pause when losing focus
             onPause = true;
-            OnPause();
+            OnPauseInternal();
         }
     }
     #endregion
@@ -92,11 +93,21 @@ public class PlayerInputs : MonoBehaviour
     //    return move;
     //}
 
-    public void OnPause()
+    private void OnPause(InputValue value)
     {
-        pauseMenu?.Invoke(onPause);
+        onPause = !onPause; // Flip pause status when pause button is pressed
+        OnPauseInternal();
+    }
+
+    private void OnPauseInternal()
+    {
+        if (onMenu) // On menu game cant be paused
+            onPause = false;
+
+        OnPauseStatusChanges?.Invoke(onPause);
         UpdateMouseLock();
     }
+
     public bool AcceptInputs()
     {
         return Cursor.lockState == CursorLockMode.Locked && !onPause && !onMenu;
@@ -105,6 +116,4 @@ public class PlayerInputs : MonoBehaviour
     {
         Cursor.lockState = onPause || onMenu ? CursorLockMode.None : CursorLockMode.Locked;
     }
-
-
 }

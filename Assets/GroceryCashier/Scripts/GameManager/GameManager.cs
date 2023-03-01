@@ -11,7 +11,10 @@ public class GameManager : MonoBehaviour
     public int day = 0;
     public GameDay[] gameDays;
     private SceneDescriptor sceneDescriptor;
+    public PauseMenu pauseMenuPrefab;
+    private PauseMenu _pauseMenu;
 
+    #region UNITY CALLBACKS
     private void Awake()
     {
         DontDestroyOnLoad(transform);
@@ -23,7 +26,19 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateSceneSpecificSettings(SceneManager.GetActiveScene().buildIndex);
+        PlayerInputs.Singleton.OnPauseStatusChanges += OnPause;
     }
+
+    private void OnEnable()
+    {
+        PlayerInputs.Singleton.OnPauseStatusChanges += OnPause;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputs.Singleton.OnPauseStatusChanges -= OnPause;
+    }
+    #endregion
 
     internal void StartDay(int day)
     {
@@ -79,6 +94,23 @@ public class GameManager : MonoBehaviour
             GroceryFirstPersonController player = Instantiate(sceneDescriptor.playerPrefab);
             Transform spawn = sceneDescriptor.playerSpawnpoints[0].transform;
             player.SetPositionAndRotation(spawn.transform.position,spawn.rotation);
+
+            _pauseMenu = Instantiate(pauseMenuPrefab);
+            _pauseMenu.Hide();
+        }
+    }
+
+    private void OnPause(bool obj)
+    {
+        if(obj)
+        {
+            _pauseMenu?.Show();
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            _pauseMenu?.Hide();
+            Time.timeScale = 1;
         }
     }
 }

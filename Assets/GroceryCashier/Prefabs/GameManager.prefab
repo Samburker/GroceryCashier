@@ -251,6 +251,7 @@ MonoBehaviour:
   onPause: 0
   onMenu: 0
   look: {x: 0, y: 0}
+  rotate: {x: 0, y: 0}
   move: {x: 0, y: 0}
   jump: 0
   sprint: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b1fcb1e77eede14eac419d6db0e5bab, type: 2}
   - {fileID: 11400000, guid: 89bd9e7501b147f43a13b34e6b35cb5b, type: 2}
   - {fileID: 11400000, guid: dd7e81e294b3aac4290dc9eb914202ba, type: 2}
+  pauseMenuPrefab: {fileID: 5146997455625949408, guid: c32d09aa26e70004791825e2f709e3af, type: 3}
 --- !u!114 &1322591242462246777
 MonoBehaviour:
   m_ObjectHideFlags: 0
