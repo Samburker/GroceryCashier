@@ -9,8 +9,6 @@ public class GameDay : ScriptableObject
     public ShopInventory shopInventory;
     public ShoppingList shoppingList;
 
-
-
     [Header("Worktime")]
     [ContextMenuItem("Morning", "StartMorning", order = 0)]
     [ContextMenuItem("Midday", "StartMidday", order = 1)]
@@ -22,6 +20,11 @@ public class GameDay : ScriptableObject
     public float endTime;
 
     [Header("Working")]
+    public int sceneNumber = 1;
+    public int customerAmountMin = 5;
+    public int customerAmountMax = 5;
+    public float customerSpawnIntervalMin = 5;
+    public float customerSpawnIntervalMax = 5f;
     [Multiline] public string messageOfTheDay;
     public bool cigarets;
     public bool security;
@@ -34,4 +37,9 @@ public class GameDay : ScriptableObject
     void EndMorning() => endTime = 7f + dayOfset;
     void EndMidday() => endTime = 14f + dayOfset;
     void EndEvening() => endTime = 22f + dayOfset;
+
+    public override string ToString()
+    {
+        return name + "\n Scene: " + sceneNumber + " " + startTime + " - " + endTime + "\n" + messageOfTheDay + "\n" + "cigarets: " + cigarets + " security:" + security;
+    }
 }

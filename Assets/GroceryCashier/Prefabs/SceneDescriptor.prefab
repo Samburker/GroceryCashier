@@ -1140,6 +1140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7153080351132169166}
   - component: {fileID: 7153080351132169167}
+  - component: {fileID: 8393953494104714953}
   m_Layer: 0
   m_Name: SceneDescriptor
   m_TagString: Untagged
@@ -1177,14 +1178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d39aebe8fd2cf4ea187f4d0014b608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
-  customerSpawnpoints:
-  - {fileID: 7153080351146625863}
-  playerSpawnpoints:
-  - {fileID: 7153080350687982126}
+  playerPrefab: {fileID: 1839210197919474736, guid: b799c0fc9bfa521469fa8f428aac1c30, type: 3}
   cashRegisters:
   - {fileID: 0}
-  customers: []
+  playerSpawnpoints:
+  - {fileID: 7153080350687982126}
   randomItemPositions:
   - {fileID: 2591267890115651766}
   - {fileID: 3654358994412509020}
@@ -1231,6 +1229,22 @@ MonoBehaviour:
   - {fileID: 7013701009664048540}
   - {fileID: 902487587486590396}
   respawnHeight: -10
+--- !u!114 &8393953494104714953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153080351132169164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335a5086095c72746807ee55126b3160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerPrefabs:
+  - {fileID: 4129462085066946004, guid: 34d3d658a447bcf45a02ba0cb2370eb6, type: 3}
+  customerSpawnpoints:
+  - {fileID: 7153080351146625862}
 --- !u!1 &7153080351146625863
 GameObject:
   m_ObjectHideFlags: 0

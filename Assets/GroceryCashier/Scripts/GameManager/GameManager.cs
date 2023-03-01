@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     internal void StartDay(int day)
     {
         this.day = day;
-        SwitchScene(1);
+        SwitchScene(gameDays[day].sceneNumber);
     }
 
     public void SwitchScene(int sceneNumber)
@@ -53,10 +53,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Fading and then loading scene
-            fade.Fade(1f, delegate
-            {
-                SceneManager.LoadScene(sceneNumber);
-            });
+            fade.Fade(1f, () => SceneManager.LoadScene(sceneNumber));
         }
     }
 
@@ -65,16 +62,13 @@ public class GameManager : MonoBehaviour
         UpdateSceneSpecificSettings(arg0.buildIndex);
 
         // Fading back after the scene load
-        if (fade != null)
-            fade.Fade(0f);
+        if (fade == null)
+            StartCoroutine(GameDayCoroutine());
+        else
+            fade.Fade(0f, () => StartCoroutine(GameDayCoroutine()));
     }
-
-
     private void UpdateSceneSpecificSettings(int buildIndex)
     {
-        // Uggly dependencies :S
-        // TODO: Refactor this
-
         // If we are on menu scene
         if (buildIndex == 0)
         {
@@ -84,25 +78,49 @@ public class GameManager : MonoBehaviour
         else if (buildIndex == 1)
         {
             PlayerInputs.Singleton.onMenu = false;
-            sceneDescriptor = GameObject.FindObjectOfType<SceneDescriptor>();
-            foreach (var cr in sceneDescriptor.cashRegisters)
-            {
-                cr.checkoutCounter.cigarette = gameDays[day].cigarets;
-                cr.checkoutCounter.security = gameDays[day].security;
-            }
-
-            GroceryFirstPersonController player = Instantiate(sceneDescriptor.playerPrefab);
-            Transform spawn = sceneDescriptor.playerSpawnpoints[0].transform;
-            player.SetPositionAndRotation(spawn.transform.position,spawn.rotation);
-
             _pauseMenu = Instantiate(pauseMenuPrefab);
             _pauseMenu.Hide();
         }
     }
 
+    private IEnumerator GameDayCoroutine()
+    {
+        Debug.Log("Starting Game day " + gameDays[day].ToString());
+        GameDay d = gameDays[day];
+        sceneDescriptor = FindObjectOfType<SceneDescriptor>();
+        CustomerManager customerManager = sceneDescriptor.CustomerManager;
+        foreach (var register in sceneDescriptor.cashRegisters)
+        {
+            register.checkoutCounter.cigarette = d.cigarets;
+            register.checkoutCounter.security = d.security;
+        }
+
+        GroceryFirstPersonController player = Instantiate(sceneDescriptor.playerPrefab);
+        Transform spawn = sceneDescriptor.playerSpawnpoints[0].transform;
+        player.SetPositionAndRotation(spawn.transform.position, spawn.rotation);
+
+        yield return new WaitForSeconds(2f);
+
+        int customers = Random.Range(d.customerAmountMin, d.customerAmountMax);
+        for (int c = 0; c < customers; c++)
+        {
+            customerManager.Spawn(gameDays[day].shoppingList);
+            yield return new WaitForSeconds(Random.Range(d.customerSpawnIntervalMin, d.customerSpawnIntervalMax));
+        }
+
+        yield return new WaitUntil(() => customerManager.CustomerCount() == 0);
+
+        Debug.Log("Day ${day} ended");
+    }
+
+    private object WaitUntil(bool v)
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void OnPause(bool obj)
     {
-        if(obj)
+        if (obj)
         {
             _pauseMenu?.Show();
             Time.timeScale = 0f;

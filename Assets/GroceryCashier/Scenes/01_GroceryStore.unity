@@ -24981,7 +24981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1633925986
 Transform:
   m_ObjectHideFlags: 0
@@ -31557,19 +31557,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2239256467698577126, guid: 118ea916f9df69b4fa071924d0a4ad9b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2239256467698577126, guid: 118ea916f9df69b4fa071924d0a4ad9b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2239256467698577126, guid: 118ea916f9df69b4fa071924d0a4ad9b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 195
       objectReference: {fileID: 0}
     - target: {fileID: 2239256467698577126, guid: 118ea916f9df69b4fa071924d0a4ad9b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 3359074886200455381, guid: 118ea916f9df69b4fa071924d0a4ad9b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -33067,12 +33067,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7153080351132169167, guid: 20a745412e75ddd4c96fb808f05e1196, type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 1839210197919474736, guid: b799c0fc9bfa521469fa8f428aac1c30, type: 3}
-    - target: {fileID: 7153080351132169167, guid: 20a745412e75ddd4c96fb808f05e1196, type: 3}
       propertyPath: customers.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7153080351132169167, guid: 20a745412e75ddd4c96fb808f05e1196, type: 3}
       propertyPath: cashRegisters.Array.data[0]

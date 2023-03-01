@@ -25,6 +25,8 @@ public class CashRegister : MonoBehaviour
     public CheckoutCounterDesk checkoutCounter;
     public ItemSpawner itemSpawner;
 
+    [SerializeField] public Transform[] queueSpots;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,5 +72,10 @@ public class CashRegister : MonoBehaviour
 
         //Scolling down
         scroll.normalizedPosition = new Vector2(0, 0);
+    }
+
+    internal Transform GetQueueSpot(int v)
+    {
+        return queueSpots[v];
     }
 }
