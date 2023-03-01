@@ -28,6 +28,7 @@ public class GroceryCustomer : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.avoidancePriority = UnityEngine.Random.Range(30, 70);
         cc = GetComponent<CharacterController>();
         scene = customerManager.sceneDescriptor;
         isDone = false;

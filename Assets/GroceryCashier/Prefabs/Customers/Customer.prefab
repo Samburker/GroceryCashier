@@ -103,6 +103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
+  isDone: 0
+  itemsWanted: 0
+  itemCount: 0
+  state: 0
 --- !u!1 &4129462085589244803
 GameObject:
   m_ObjectHideFlags: 0
