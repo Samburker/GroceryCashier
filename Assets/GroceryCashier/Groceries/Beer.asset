@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe14df09e2e9934cada4528ba91b31e, type: 3}
   m_Name: Beer
   m_EditorClassIdentifier: 
+  itemName: Beer
   prefab: {fileID: 538173314147655519, guid: 0e394f2d1c57b60448b7826ff59f9bef, type: 3}
   restricted: 0
   itemPrice: 0

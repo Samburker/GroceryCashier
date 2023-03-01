@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,7 +5,7 @@ using UnityEngine.Serialization;
 public class ShoppingItem : ScriptableObject
 {
     public enum PriceType { Unit, Weight }
-
+    public string itemName;
     public GameObject prefab;
     public bool restricted;
     public float itemPrice;
@@ -24,5 +23,10 @@ public class ShoppingItem : ScriptableObject
 
         var tag = go.AddComponent<PriceTag>();
         tag.item = this;
+    }
+    private void OnValidate()
+    {
+        if (string.IsNullOrEmpty(itemName))
+            itemName = name;
     }
 }

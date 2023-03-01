@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe14df09e2e9934cada4528ba91b31e, type: 3}
   m_Name: Bread
   m_EditorClassIdentifier: 
+  itemName: Bread
   prefab: {fileID: 984500908231070376, guid: c7159f44af7c4924f88c34b5f2b94eac, type: 3}
   restricted: 0
   itemPrice: 0

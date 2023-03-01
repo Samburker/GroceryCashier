@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe14df09e2e9934cada4528ba91b31e, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
+  itemName: Banana
   prefab: {fileID: 4893554841808803924, guid: 472632fe8df46d542b52a6e3d09c6153, type: 3}
   restricted: 0
-  itemPrice: 0
-  priceType: 0
-  itemWeightMin: 0
-  itemWeightMax: 0
+  itemPrice: 1.55
+  priceType: 1
+  itemWeightMin: 0.15
+  itemWeightMax: 0.2

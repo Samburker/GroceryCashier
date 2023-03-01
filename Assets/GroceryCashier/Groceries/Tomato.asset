@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe14df09e2e9934cada4528ba91b31e, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
+  itemName: Tomato
   prefab: {fileID: 3834532174133313453, guid: 7dd08dd9ecd0e374b82f197b4d8d078e, type: 3}
   restricted: 0
-  itemPrice: 3.77
+  itemPrice: 5.49
   priceType: 1
-  itemWeightMin: 0
-  itemWeightMax: 0.8
+  itemWeightMin: 0.08
+  itemWeightMax: 0.01
