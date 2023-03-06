@@ -7,11 +7,9 @@ public class CustomerManager : MonoBehaviour
 {
     public static CustomerManager Singleton { get; private set; }
     public GroceryCustomer[] customerPrefabs;
-    public Transform[] customerSpawnpoints;
 
     internal ShoppingList shoppingList;
     private List<GroceryCustomer> _customers = new List<GroceryCustomer>();
-
 
     private void Awake()
     {
@@ -20,9 +18,10 @@ public class CustomerManager : MonoBehaviour
 
     internal void Spawn()
     {
+        SceneDescriptor _sceneDescriptor = GameManager.Singleton.sceneDescriptor;
         GroceryCustomer customer = Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)]);
         customer.shoppingList = shoppingList;
-        customer.SetPosition(customerSpawnpoints[Random.Range(0, customerSpawnpoints.Length)]);
+        customer.SetPosition(_sceneDescriptor.customerSpawnpoints[Random.Range(0, _sceneDescriptor.customerSpawnpoints.Length)]);
     }
 
     internal void OnCustomerSpawn(GroceryCustomer c)

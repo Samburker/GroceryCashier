@@ -13,24 +13,26 @@ public class GroceryCustomer : MonoBehaviour
     public int itemCount = 0;
     internal ShoppingList shoppingList;
 
-    internal Action<GroceryCustomer> OnDespawn;
-    internal CustomerManager customerManager;
     private NavMeshAgent _agent;
     private CharacterController _cc;
-    private SceneDescriptor _sceneManager;
+    private SceneDescriptor _sceneDescriptor;
     private Vector3 _currentTargetPosition;
 
     public CustomerState state;
     private CustomerState _previousState = CustomerState.NONE;
     private bool _pathComplete;
-    public enum CustomerState { NONE, COLLECTING, QUEUE, PAYMENT, EXIT }
+    public enum CustomerState
+    {
+        NONE, COLLECTING, QUEUE, PAYMENT, EXIT,
+        DESPAWN
+    }
 
     void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _cc = GetComponent<CharacterController>();
+        _sceneDescriptor = GameManager.Singleton.sceneDescriptor;
         _agent.avoidancePriority = UnityEngine.Random.Range(30, 70);
-        _sceneManager = GameManager.Singleton.sceneDescriptor;
         isDone = false;
     }
 
@@ -55,29 +57,33 @@ public class GroceryCustomer : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
             _pathComplete = PathComplete();
-
+            bool stateChanged = _previousState != state;
+            _previousState = state;
             switch (state)
             {
                 case CustomerState.NONE:
                 case CustomerState.COLLECTING:
-                    state = AiCollecting(_previousState != state);
+                    state = AiCollecting(stateChanged);
                     break;
                 case CustomerState.QUEUE:
-                    state = AiQueue(_previousState != state);
+                    state = AiQueue(stateChanged);
                     break;
                 case CustomerState.PAYMENT:
-                    state = AiPayment(_previousState != state);
+                    state = AiPayment(stateChanged);
                     break;
                 case CustomerState.EXIT:
-                    state = AiExit(_previousState != state);
+                    state = AiExit(stateChanged);
+                    break;
+                case CustomerState.DESPAWN:
+                    state = AiDespawn(stateChanged);
                     break;
             }
-            _previousState = state;
 
             Walk();
         }
 
     }
+
 
 
     private CustomerState AiCollecting(bool first)
@@ -87,7 +93,7 @@ public class GroceryCustomer : MonoBehaviour
 
         if (_pathComplete)
         {
-            goal = _sceneManager.randomItemPositions[UnityEngine.Random.Range(0, _sceneManager.randomItemPositions.Length)];
+            goal = _sceneDescriptor.randomItemPositions[UnityEngine.Random.Range(0, _sceneDescriptor.randomItemPositions.Length)];
 
             if (first)
                 itemCount = 0;
@@ -100,39 +106,53 @@ public class GroceryCustomer : MonoBehaviour
 
     private CustomerState AiQueue(bool first)
     {
-        if (_pathComplete) // Going to next state
+        if (first)
+            goal = _sceneDescriptor.cashRegisters[0].GetQueueSpot(5);
+
+        if (_pathComplete && !first) // Going to next state
             return CustomerState.PAYMENT;
 
-        goal = _sceneManager.cashRegisters[0].GetQueueSpot(0);
         return CustomerState.QUEUE;
     }
 
     private CustomerState AiPayment(bool first)
     {
-        if (_pathComplete) // Going to next state
+        if (first)
+            goal = _sceneDescriptor.cashRegisters[0].GetQueueSpot(0);
+
+        if (_pathComplete && !first) // Going to next state
             return CustomerState.EXIT;
 
-        goal = _sceneManager.cashRegisters[0].GetQueueSpot(0);
         return CustomerState.PAYMENT;
     }
 
     private CustomerState AiExit(bool first)
     {
-        // This is the final one, despawning
-        if (_pathComplete)
-        {
-            goal = _sceneManager.customerManager.customerSpawnpoints[0];
-            StopAllCoroutines();
-            Destroy(gameObject);
-            return CustomerState.EXIT;
-        }
+        // Walking to spawn/despawn area
+        if(first)
+            goal = _sceneDescriptor.customerSpawnpoints[0];
+
+        if (_pathComplete && !first) // Going to next state
+            return CustomerState.DESPAWN;
 
         return CustomerState.EXIT;
     }
 
+    private CustomerState AiDespawn(bool first)
+    {
+        // This is the final one, despawning
+        if (first)
+        {
+            _agent.isStopped = true;
+            StopAllCoroutines();
+            Destroy(gameObject);
+        }
+        return CustomerState.DESPAWN;
+    }
+
     private void Walk()
     {
-        if (goal == null)
+        if (goal == null || _agent == null)
             return;
 
         if (_currentTargetPosition != goal.position)
@@ -165,6 +185,8 @@ public class GroceryCustomer : MonoBehaviour
     {
         if (Vector3.Distance(_agent.destination, _agent.transform.position) <= _agent.stoppingDistance)
         {
+            if (_agent.pathPending)
+                return false;
             if (!_agent.hasPath || _agent.velocity.sqrMagnitude == 0f)
             {
                 return true;
