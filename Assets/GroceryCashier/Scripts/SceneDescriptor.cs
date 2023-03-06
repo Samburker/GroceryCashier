@@ -10,14 +10,5 @@ public class SceneDescriptor : MonoBehaviour
     public GameObject[] playerSpawnpoints;
     public Transform[] randomItemPositions;
     public float respawnHeight = -10f;
-    private CustomerManager _customerManager;
-
-    public CustomerManager CustomerManager { get => _customerManager ?? GetCustomerManager(); }
-
-    private CustomerManager GetCustomerManager()
-    {
-        _customerManager = GetComponent<CustomerManager>();
-        _customerManager.sceneDescriptor = this;
-        return _customerManager;
-    }
+    public CustomerManager customerManager;
 }

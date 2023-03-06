@@ -5,32 +5,41 @@ using UnityEngine;
 
 public class CustomerManager : MonoBehaviour
 {
+    public static CustomerManager Singleton { get; private set; }
     public GroceryCustomer[] customerPrefabs;
     public Transform[] customerSpawnpoints;
 
+    internal ShoppingList shoppingList;
     private List<GroceryCustomer> _customers = new List<GroceryCustomer>();
 
-    internal void Spawn(ShoppingList shoppingList)
+
+    private void Awake()
     {
-        GroceryCustomer customer = Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)]);
-        customer.customerManager = this;
-        customer.shoppingList = shoppingList;
-        customer.SetPosition(customerSpawnpoints[Random.Range(0, customerSpawnpoints.Length)]);
-        _customers.Add(customer);
-        customer.OnDespawn += OnDespawn;
+        Singleton = this;
     }
 
-    internal SceneDescriptor sceneDescriptor;
-
-    private void OnDespawn(GroceryCustomer obj)
+    internal void Spawn()
     {
-        _customers.Remove(obj);
-        Destroy(obj.gameObject);
-        Debug.Log("Customer despawned\n" + obj.ToString());
+        GroceryCustomer customer = Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)]);
+        customer.shoppingList = shoppingList;
+        customer.SetPosition(customerSpawnpoints[Random.Range(0, customerSpawnpoints.Length)]);
+    }
+
+    internal void OnCustomerSpawn(GroceryCustomer c)
+    {
+        _customers.Add(c);
+        Debug.Log("Customer Spawned\n" + c.ToString());
+    }
+
+    internal void OnCustomerDespawn(GroceryCustomer c)
+    {
+        _customers.Remove(c);
+        Debug.Log("Customer Despawned\n" + c.ToString());
     }
 
     internal int CustomerCount()
     {
         return _customers.Count;
     }
+
 }

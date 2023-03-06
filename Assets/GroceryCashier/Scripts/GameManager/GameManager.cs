@@ -7,12 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Singleton { get; private set; }
     public ScreenFade fade;
-
     public int day = 0;
-    public GameDay[] gameDays;
-    private SceneDescriptor sceneDescriptor;
+    public GameDay[] gameDays;    
     public PauseMenu pauseMenuPrefab;
     private PauseMenu _pauseMenu;
+    internal SceneDescriptor sceneDescriptor;
 
     #region UNITY CALLBACKS
     private void Awake()
@@ -88,7 +87,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Starting Game day " + gameDays[day].ToString());
         GameDay d = gameDays[day];
         sceneDescriptor = FindObjectOfType<SceneDescriptor>();
-        CustomerManager customerManager = sceneDescriptor.CustomerManager;
         foreach (var register in sceneDescriptor.cashRegisters)
         {
             register.checkoutCounter.cigarette = d.cigarets;
@@ -101,10 +99,12 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        CustomerManager customerManager = CustomerManager.Singleton;
         int customers = Random.Range(d.customerAmountMin, d.customerAmountMax);
         for (int c = 0; c < customers; c++)
         {
-            customerManager.Spawn(gameDays[day].shoppingList);
+            customerManager.shoppingList = gameDays[day].shoppingList;
+            customerManager.Spawn();
             yield return new WaitForSeconds(Random.Range(d.customerSpawnIntervalMin, d.customerSpawnIntervalMax));
         }
 
