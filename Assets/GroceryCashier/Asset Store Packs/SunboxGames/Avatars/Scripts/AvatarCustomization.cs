@@ -458,7 +458,10 @@ namespace Sunbox.Avatars {
         /// Updates the customization. Call this if you make any changes to the avatar.
         /// Doesn't update avatar clothing, for that call UpdateClothing(). 
         /// </summary>
-        public void UpdateCustomization() {
+        public void UpdateCustomization()
+        {
+            ResetBase();
+
             UpdateHeight_Internal();
             UpdateBodyParameters_Internal();
 
@@ -471,6 +474,12 @@ namespace Sunbox.Avatars {
 
             UpdateMaterials_Internal();
             UpdateBlinking_Internal();
+        }
+
+        private void ResetBase()
+        {
+            CurrentBase.transform.localPosition = Vector3.zero;
+            CurrentBase.transform.localRotation = Quaternion.identity;
         }
 
         /// <summary>
@@ -623,12 +632,12 @@ namespace Sunbox.Avatars {
             }
 
             if (_facialHairObject == null) {
-                _facialHairObject = Instantiate(AvatarReferences.FacialHairItems[index].FacialHairmesh).gameObject;
-                _facialHairObject.transform.parent = CurrentBase.transform;
-                
+                _facialHairObject = Instantiate(AvatarReferences.FacialHairItems[index].FacialHairmesh, CurrentBase.transform).gameObject;
+
                 _facialHairObject.AddComponent<UFacialHair>().FacialHairItem = AvatarReferences.FacialHairItems[index];
                 SkinnedMeshRenderer renderer = _facialHairObject.GetComponent<SkinnedMeshRenderer>();
                 renderer.bones = _bodyBones;
+                renderer.rootBone = GetAvatarBone(HumanBodyBones.Hips);
                 renderer.sharedMaterial = AvatarReferences.FacialHairItems[index].HasVariations() ? AvatarReferences.FacialHairItems[index].Variations[materialIndex] : null;
             }
 
@@ -662,6 +671,11 @@ namespace Sunbox.Avatars {
 
                 }
             }
+        }
+
+        private Transform GetAvatarBone(HumanBodyBones bone)
+        {
+            return Animator.GetBoneTransform(bone);
         }
 
         private void UpdateBlinking_Internal(){
@@ -847,11 +861,13 @@ namespace Sunbox.Avatars {
 
                 if (slot.AttachmentType == AttachmentType.SkinnedToArmature) {
                     instantiatedClothingItem.transform.parent = slot.BoneTransform;
+                    instantiatedClothingItem.transform.position = slot.BoneTransform.position;
+                    instantiatedClothingItem.transform.rotation = slot.BoneTransform.rotation;
 
                     SkinnedMeshRenderer skinnedMeshRenderer = instantiatedClothingItem.AddComponent<SkinnedMeshRenderer>();
                     skinnedMeshRenderer.sharedMesh = mesh;
                     skinnedMeshRenderer.bones = _bodyBones;
-
+                    skinnedMeshRenderer.rootBone = GetAvatarBone(HumanBodyBones.Hips);
                     _activeSkinnedClothingItems.Add(slot.SlotType, skinnedMeshRenderer);
                 }
 
@@ -912,6 +928,7 @@ namespace Sunbox.Avatars {
             foreach (HideBlendShapeIndex index in indices) {
                 if (index != HideBlendShapeIndex.Nothing) {
                     CurrentGenderSkinnedRenderer.SetBlendShapeWeight((int) index, 0);
+                    CurrentGenderSkinnedRenderer.rootBone = GetAvatarBone(HumanBodyBones.Hips);
                 }
             }
 
