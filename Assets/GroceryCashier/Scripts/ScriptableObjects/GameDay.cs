@@ -26,6 +26,7 @@ public class GameDay : ScriptableObject
     public float customerSpawnIntervalMin = 5;
     public float customerSpawnIntervalMax = 5f;
     [Multiline] public string messageOfTheDay;
+    [Multiline] public string messageOfTheDayEvening;
     public bool cigarets;
     public bool security;
 
