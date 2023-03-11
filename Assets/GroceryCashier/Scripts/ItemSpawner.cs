@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
+    private List<GameObject> spawnedItems = new List<GameObject>();
     public void SpawnItems(IEnumerable<ShoppingItem> items, Action callback)
     {
         StartCoroutine(SpawnItemsCoroutine(items, callback));
@@ -17,6 +18,7 @@ public class ItemSpawner : MonoBehaviour
         {
             // Instantiating item prefabs
             GameObject go = Instantiate(item.prefab, transform.position, transform.rotation);
+            spawnedItems.Add(go);
 
             // Setting pricetag
             var tag = go.AddComponent<PriceTag>();
@@ -30,5 +32,13 @@ public class ItemSpawner : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
         callback?.Invoke();
+    }
+
+    internal void DespawnAll()
+    {
+        foreach(var item in spawnedItems)
+        {
+            Destroy(item, 5f);
+        }
     }
 }

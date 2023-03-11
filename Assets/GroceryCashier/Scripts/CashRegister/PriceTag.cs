@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[SelectionBase]
 public class PriceTag : MonoBehaviour
 {
     public ShoppingItem item;

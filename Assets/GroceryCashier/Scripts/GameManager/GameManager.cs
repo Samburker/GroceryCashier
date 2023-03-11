@@ -60,11 +60,10 @@ public class GameManager : MonoBehaviour
     {
         UpdateSceneSpecificSettings(arg0.buildIndex);
 
+        StartCoroutine(GameDayCoroutine());
         // Fading back after the scene load
-        if (fade == null)
-            StartCoroutine(GameDayCoroutine());
-        else
-            fade.Fade(0f, () => StartCoroutine(GameDayCoroutine()));
+        if (fade != null)
+            fade.Fade(0f);
     }
     private void UpdateSceneSpecificSettings(int buildIndex)
     {
@@ -97,6 +96,9 @@ public class GameManager : MonoBehaviour
         Transform spawn = sceneDescriptor.playerSpawnpoints[0].transform;
         player.SetPositionAndRotation(spawn.transform.position, spawn.rotation);
 
+        if(fade != null)
+            yield return new WaitUntil(() => fade.IsCompleted);
+
         yield return new WaitForSeconds(2f);
 
         CustomerManager customerManager = CustomerManager.Singleton;
@@ -111,11 +113,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => customerManager.CustomerCount() == 0);
 
         Debug.Log("Day ${day} ended");
-    }
 
-    private object WaitUntil(bool v)
-    {
-        throw new System.NotImplementedException();
+        // Next day
+        StartDay(day + 1);
     }
 
     private void OnPause(bool obj)

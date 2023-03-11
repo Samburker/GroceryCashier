@@ -8,8 +8,11 @@ public class ScreenFade : MonoBehaviour
     public float fadeTime = 5f;
     private Coroutine fadeCoroutine;
 
+    internal bool IsCompleted { get; private set; }
+
     public void Fade(float target, Action callback = null)
     {
+        IsCompleted = false;
         if (fadeCoroutine != null)
             StopCoroutine(fadeCoroutine);
         fadeCoroutine = StartCoroutine(FadeCoroutine(target, callback));
@@ -44,6 +47,8 @@ public class ScreenFade : MonoBehaviour
 
         // Disabling canvas if target is fully transparent
         fadeCanvas.gameObject.SetActive(target < 0.001f);
+
+        IsCompleted = true;
 
         // Calling callback
         callback?.Invoke();

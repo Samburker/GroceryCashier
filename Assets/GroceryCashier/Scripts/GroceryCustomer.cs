@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[SelectionBase]
 [RequireComponent(typeof(NavMeshAgent), typeof(CharacterController))]
 public class GroceryCustomer : MonoBehaviour
 {
@@ -11,8 +12,9 @@ public class GroceryCustomer : MonoBehaviour
     public bool isDone = false;
     public int itemsWanted = 0;
     public int itemCount = 0;
-    internal ShoppingList shoppingList;
+    public bool paymentDone = false;
 
+    internal ShoppingList shoppingList;
     private NavMeshAgent _agent;
     private CharacterController _cc;
     private SceneDescriptor _sceneDescriptor;
@@ -21,6 +23,7 @@ public class GroceryCustomer : MonoBehaviour
     public CustomerState state;
     private CustomerState _previousState = CustomerState.NONE;
     private bool _pathComplete;
+
     public enum CustomerState
     {
         NONE, COLLECTING, QUEUE, PAYMENT, EXIT,
@@ -107,20 +110,28 @@ public class GroceryCustomer : MonoBehaviour
     private CustomerState AiQueue(bool first)
     {
         if (first)
-            goal = _sceneDescriptor.cashRegisters[0].GetQueueSpot(5);
+            _sceneDescriptor.cashRegisters[0].Enqueue(this);
 
-        if (_pathComplete && !first) // Going to next state
+        int queueIndex = _sceneDescriptor.cashRegisters[0].GetQueue(this);
+        if (_pathComplete && queueIndex < 0)
+        {
+            // Going to next state
             return CustomerState.PAYMENT;
+        }
 
+        goal = _sceneDescriptor.cashRegisters[0].GetQueueSpot(queueIndex + 1); // Spot 0 is for current customer
         return CustomerState.QUEUE;
     }
 
     private CustomerState AiPayment(bool first)
     {
         if (first)
+        {
             goal = _sceneDescriptor.cashRegisters[0].GetQueueSpot(0);
+            _sceneDescriptor.cashRegisters[0].PaymentStart(this);
+        }
 
-        if (_pathComplete && !first) // Going to next state
+        if (_pathComplete && !first && paymentDone) // Going to next state
             return CustomerState.EXIT;
 
         return CustomerState.PAYMENT;

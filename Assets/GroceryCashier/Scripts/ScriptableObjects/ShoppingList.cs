@@ -21,4 +21,21 @@ public class ShoppingList : ScriptableObject
         [Range(0, 100f)] public float probability;
         public List<ShoppingItem> variants;
     }
+
+    internal IEnumerable<ShoppingItem> GetItems(int itemsWanted)
+    {
+        int count = 0;
+        while (count < itemsWanted)
+        {
+            foreach (ShoppingListItem item in items)
+            {
+                if (UnityEngine.Random.Range(0, 1f) < item.probability)
+                    continue; // Skip this item
+
+                // Return random variant
+                yield return item.variants[UnityEngine.Random.Range(0, item.variants.Count)];
+                count++;
+            }
+        }
+    }
 }
