@@ -54963,7 +54963,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114765636956754058, guid: 3c21fae85de8b448fb137b5311d976ca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c21fae85de8b448fb137b5311d976ca, type: 3}
 --- !u!4 &1255935375 stripped
 Transform:
@@ -72606,6 +72607,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1612312283}
     m_Modifications:
+    - target: {fileID: 8656924734485535397, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: m_StopNaN
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656924734485535397, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: m_Dithering
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656924734485535397, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: m_Antialiasing
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656924734485535397, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_RootOrder
       value: 6
