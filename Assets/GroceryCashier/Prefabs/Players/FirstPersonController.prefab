@@ -264,6 +264,13 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
     GateFit: 2
     m_SensorSize: {x: 1, y: 1}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -285,7 +292,7 @@ GameObject:
   - component: {fileID: 1012265607545172949}
   - component: {fileID: 1839210197919474736}
   - component: {fileID: 6842539752060983350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirstPersonController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
