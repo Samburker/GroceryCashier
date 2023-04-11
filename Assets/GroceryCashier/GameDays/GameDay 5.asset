@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b420cd39ed2df9499be18a8e6c45629, type: 3}
   m_Name: GameDay 5
   m_EditorClassIdentifier: 
-  shopInventory: {fileID: 11400000, guid: b3620e52c59a465498ee726160ffb59b, type: 2}
-  shoppingList: {fileID: 11400000, guid: 042aa68676241d84fb161f509d340dbb, type: 2}
-  startTime: 6.85
-  endTime: 14.15
+  shopInventory: {fileID: 11400000, guid: c13234f2116e8a54397281b83336a350, type: 2}
+  shoppingList: {fileID: 11400000, guid: b881f5e43c0ef3a4d907ab8ac0547fa0, type: 2}
+  sceneNumber: 1
+  customerAmountMin: 5
+  customerAmountMax: 5
+  customerSpawnIntervalMin: 5
+  customerSpawnIntervalMax: 5
   messageOfTheDay: 
+  messageOfTheDayEvening: 
   cigarets: 1
   security: 1
