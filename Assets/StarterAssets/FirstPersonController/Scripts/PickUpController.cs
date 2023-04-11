@@ -11,6 +11,7 @@ public class PickUpController : MonoBehaviour
     private Rigidbody heldObjectRB;
 
     [Header("Pickup Settings")]
+    [SerializeField] private LayerMask pickupLayers;
     [SerializeField] private float pickupRange = 5.0f;
     [SerializeField] private float pickupForce = 150.0f;
     [SerializeField] private float rotationSpeed = 1f;
@@ -77,6 +78,9 @@ public class PickUpController : MonoBehaviour
 
     void PickupObject(GameObject pickObj)
     {
+        if ((pickupLayers.value & (1 << pickObj.layer)) == 0)
+            return;
+
         if (pickObj.GetComponent<Rigidbody>())
         {
             heldObjectRB = pickObj.GetComponent<Rigidbody>();
