@@ -73,6 +73,7 @@ public class PlayerInputs : MonoBehaviour
     {
         UpdateMouseLock();
         pickupButton?.Invoke(value.isPressed);
+
     }
     private void OnRotate(InputValue value)
     {
