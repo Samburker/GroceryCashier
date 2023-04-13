@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 74637377102422793, guid: 7d0edc8b8c75c9f4cb3b1de663e347b1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8716046892506095759, guid: 7d0edc8b8c75c9f4cb3b1de663e347b1, type: 3}
       propertyPath: m_RootOrder
@@ -148,7 +148,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 364957756516274557, guid: b5d7c53d4fa56874699843b4767928f1, type: 3}
       propertyPath: m_Name
-      value: Door_Frame_00
+      value: Door_Frame_00 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 364957756516274557, guid: b5d7c53d4fa56874699843b4767928f1, type: 3}
       propertyPath: m_StaticEditorFlags
