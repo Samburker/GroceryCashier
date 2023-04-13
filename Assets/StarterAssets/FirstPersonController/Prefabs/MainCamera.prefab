@@ -201,7 +201,7 @@ MonoBehaviour:
   holdArea: {fileID: 868430630}
   pickupLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   pickupRange: 5
   pickupForce: 150
   rotationSpeed: 1
