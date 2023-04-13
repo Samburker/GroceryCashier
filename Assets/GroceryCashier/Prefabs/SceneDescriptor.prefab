@@ -1231,7 +1231,7 @@ MonoBehaviour:
   - {fileID: 7013701009664048540}
   - {fileID: 902487587486590396}
   respawnHeight: -10
-  customerManager: {fileID: 0}
+  customerManager: {fileID: 8393953494104714953}
 --- !u!114 &8393953494104714953
 MonoBehaviour:
   m_ObjectHideFlags: 0

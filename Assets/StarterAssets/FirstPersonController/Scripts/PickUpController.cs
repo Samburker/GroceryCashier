@@ -17,6 +17,7 @@ public class PickUpController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 1f;
     private PlayerInputs _inputs;
     private bool _rotating;
+    private IGrabbable grabbable;
 
     private void OnEnable()
     {
@@ -48,7 +49,6 @@ public class PickUpController : MonoBehaviour
             DoRaycast();
         else
             DropObject();
-
     }
 
     private void OnRotate(bool obj)
@@ -70,9 +70,10 @@ public class PickUpController : MonoBehaviour
         if (heldObject != null)
         {
             MoveObject();
-            RotateObject();
+            if (grabbable == null)
+                RotateObject();
         }
-        if(_inputs != null)
+        if(_inputs != null && grabbable == null)
             _inputs.rotateMode = heldObject != null && _rotating;
     }
 
@@ -81,6 +82,14 @@ public class PickUpController : MonoBehaviour
         if ((pickupLayers.value & (1 << pickObj.layer)) == 0)
             return;
 
+        grabbable = pickObj.GetComponent<IGrabbable>();
+        if (grabbable != null)
+        {
+            heldObjectRB = pickObj.GetComponent<Rigidbody>();
+            heldObject = pickObj;
+            grabbable.StartGrab();
+            return;
+        }
         if (pickObj.GetComponent<Rigidbody>())
         {
             heldObjectRB = pickObj.GetComponent<Rigidbody>();
@@ -95,6 +104,14 @@ public class PickUpController : MonoBehaviour
 
     void DropObject()
     {
+        if (grabbable != null)
+        {
+            grabbable.EndGrab();
+            heldObject = null;
+            heldObjectRB = null;
+            grabbable = null;
+            return;
+        }
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 1;
         heldObjectRB.constraints = RigidbodyConstraints.None;
