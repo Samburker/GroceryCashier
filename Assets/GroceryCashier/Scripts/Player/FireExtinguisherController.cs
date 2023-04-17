@@ -5,9 +5,11 @@ using UnityEngine;
 public class FireExtinguisherController : MonoBehaviour
 {
     public GameObject fireExtinguisher;
+    public GameObject extinguisherParticles;
     public float pickupDistance = 2.0f;
     public KeyCode pickupKey = KeyCode.F;
     public KeyCode holsterKey = KeyCode.H;
+    public KeyCode sprayKey = KeyCode.Mouse0;
 
     private bool isPickedUp = false;
     private bool isEnabled = false;
@@ -31,6 +33,15 @@ public class FireExtinguisherController : MonoBehaviour
         {
             isEnabled = !isEnabled;
             fireExtinguisher.SetActive(isEnabled);
+        }
+
+        if (isPickedUp && isEnabled && Input.GetKey(sprayKey))
+        {
+            extinguisherParticles.SetActive(true);
+        }
+        else
+        {
+            extinguisherParticles.SetActive(false);
         }
     }
 

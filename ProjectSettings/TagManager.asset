@@ -9,6 +9,7 @@ TagManager:
   - TitleScreen
   - MenuButton
   - Fluid
+  - FireExtinguisher
   layers:
   - Default
   - TransparentFX
