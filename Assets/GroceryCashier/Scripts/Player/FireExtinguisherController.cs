@@ -11,13 +11,19 @@ public class FireExtinguisherController : MonoBehaviour
     public KeyCode holsterKey = KeyCode.H;
     public KeyCode sprayKey = KeyCode.Mouse0;
 
+    public AudioClip pickupSound;
+    public AudioClip holsterSound;
+    public AudioClip spraySound;
+
     private bool isPickedUp = false;
     private bool isEnabled = false;
     private GameObject pickupItem;
+    private AudioSource audioSource;
 
     void Start()
     {
         fireExtinguisher.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,20 +34,27 @@ public class FireExtinguisherController : MonoBehaviour
             pickupItem.SetActive(false);
             fireExtinguisher.SetActive(true);
             isEnabled = true;
+            audioSource.PlayOneShot(pickupSound);
         }
         else if (isPickedUp && Input.GetKeyDown(holsterKey))
         {
             isEnabled = !isEnabled;
             fireExtinguisher.SetActive(isEnabled);
+            audioSource.PlayOneShot(holsterSound);
         }
 
         if (isPickedUp && isEnabled && Input.GetKey(sprayKey))
         {
             extinguisherParticles.SetActive(true);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(spraySound);
+            }
         }
         else
         {
             extinguisherParticles.SetActive(false);
+            audioSource.Stop();
         }
     }
 
