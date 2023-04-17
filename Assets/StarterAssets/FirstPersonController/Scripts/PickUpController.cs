@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,36 +11,86 @@ public class PickUpController : MonoBehaviour
     private Rigidbody heldObjectRB;
 
     [Header("Pickup Settings")]
+    [SerializeField] private LayerMask pickupLayers;
     [SerializeField] private float pickupRange = 5.0f;
     [SerializeField] private float pickupForce = 150.0f;
     [SerializeField] private float rotationSpeed = 1f;
+    private PlayerInputs _inputs;
+    private bool _rotating;
+    private IGrabbable grabbable;
+
+    private void OnEnable()
+    {
+        StartCoroutine(LateEnable());
+    }
+
+    private IEnumerator LateEnable()
+    {
+        yield return new WaitUntil(() => PlayerInputs.Singleton != null);
+
+        // Getting reference to input system
+        _inputs = PlayerInputs.Singleton;
+        _inputs.pickupButton += OnPickup;
+        _inputs.rotateButton += OnRotate;
+    }
+
+    private void OnDisable()
+    {
+        _inputs.pickupButton -= OnPickup;
+        _inputs.rotateButton -= OnRotate;
+        _inputs.rotateMode = false;
+    }
+
+    private void OnPickup(bool obj)
+    {
+        if (!obj)
+            return;
+        if (heldObject == null)
+            DoRaycast();
+        else
+            DropObject();
+    }
+
+    private void OnRotate(bool obj)
+    {
+        _rotating = obj;
+    }
+
+    private void DoRaycast()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
+        {
+            PickupObject(hit.transform.gameObject); // this found object with raycast is not input to pickObj as parameter
+        }
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // 0 is left click
-        {
-            if(heldObject == null) // if we don't have anything currently
-            {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
-                {
-                    PickupObject(hit.transform.gameObject); // this found object with raycast is not input to pickObj as parameter
-                }
-            }
-            else
-            {
-                DropObject();
-            }
-        }
         if (heldObject != null)
         {
             MoveObject();
+            if (grabbable == null)
+                RotateObject();
         }
+        if(_inputs != null && grabbable == null)
+            _inputs.rotateMode = heldObject != null && _rotating;
     }
 
     void PickupObject(GameObject pickObj)
     {
-        if(pickObj.GetComponent<Rigidbody>())
+        if ((pickupLayers.value & (1 << pickObj.layer)) == 0)
+            return;
+
+        grabbable = pickObj.GetComponent<IGrabbable>();
+        if (grabbable != null)
+        {
+            heldObjectRB = pickObj.GetComponent<Rigidbody>();
+            heldObject = pickObj;
+            grabbable.StartGrab();
+            return;
+        }
+        if (pickObj.GetComponent<Rigidbody>())
         {
             heldObjectRB = pickObj.GetComponent<Rigidbody>();
             heldObjectRB.useGravity = false;
@@ -48,26 +99,30 @@ public class PickUpController : MonoBehaviour
 
             heldObjectRB.transform.parent = holdArea;
             heldObject = pickObj;
-
         }
     }
 
     void DropObject()
     {
-        
-            heldObjectRB.useGravity = true;
-            heldObjectRB.drag = 1;
-            heldObjectRB.constraints = RigidbodyConstraints.None;
-
-            heldObjectRB.transform.parent = null;
+        if (grabbable != null)
+        {
+            grabbable.EndGrab();
             heldObject = null;
+            heldObjectRB = null;
+            grabbable = null;
+            return;
+        }
+        heldObjectRB.useGravity = true;
+        heldObjectRB.drag = 1;
+        heldObjectRB.constraints = RigidbodyConstraints.None;
 
-        
+        heldObjectRB.transform.parent = null;
+        heldObject = null;
     }
 
     void MoveObject()
     {
-        if(Vector3.Distance(heldObject.transform.position, holdArea.position) > 0.1f )
+        if (Vector3.Distance(heldObject.transform.position, holdArea.position) > 0.1f)
         {
             Vector3 moveDirection = (holdArea.position - heldObject.transform.position);
             heldObjectRB.AddForce(moveDirection * pickupForce);
@@ -76,17 +131,15 @@ public class PickUpController : MonoBehaviour
 
     void RotateObject()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (_rotating)
         {
-            float XaxsisRotation = Input.GetAxis("Mouse X") * rotationSpeed;
-            float YaxsisRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
+            Debug.Log("Rotating");
+            float XaxsisRotation = _inputs.rotate.x * rotationSpeed;
+            float YaxsisRotation = _inputs.rotate.y * rotationSpeed;
 
             heldObject.transform.Rotate(Vector3.down, XaxsisRotation);
             heldObject.transform.Rotate(Vector3.right, YaxsisRotation);
         }
     }
-
-
-
 
 }

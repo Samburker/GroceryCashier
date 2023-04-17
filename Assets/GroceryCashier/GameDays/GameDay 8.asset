@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b420cd39ed2df9499be18a8e6c45629, type: 3}
+  m_Name: GameDay 8
+  m_EditorClassIdentifier: 
+  shopInventory: {fileID: 11400000, guid: c13234f2116e8a54397281b83336a350, type: 2}
+  shoppingList: {fileID: 11400000, guid: b881f5e43c0ef3a4d907ab8ac0547fa0, type: 2}
+  sceneNumber: 1
+  customerAmountMin: 5
+  customerAmountMax: 5
+  customerSpawnIntervalMin: 5
+  customerSpawnIntervalMax: 5
+  messageOfTheDay: 
+  messageOfTheDayEvening: 
+  cigarets: 1
+  security: 1

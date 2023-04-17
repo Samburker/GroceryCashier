@@ -16,12 +16,16 @@ public class SC_MainMenu : MonoBehaviour
     public void PlayNowButton()
     {
         // Play Now Button has been pressed, here you can initialize your game 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        GameManager.Singleton.StartDay(0);
     }
 
     public void QuitButton()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         // Quit Game
         Application.Quit();
+#endif
     }
 }

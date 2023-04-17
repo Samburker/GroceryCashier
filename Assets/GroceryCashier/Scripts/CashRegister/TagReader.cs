@@ -14,6 +14,7 @@ public class TagReader : MonoBehaviour
     private PriceTag lastObject;
     private float cooldownTimer;
     public Action<PriceTag> OnTagDetected;
+    public bool drawGizmos;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +22,7 @@ public class TagReader : MonoBehaviour
         // Doing raycast
         foreach (RaycastHit hit in TargetObjects())
         {
-            currentObject = hit.collider.GetComponent<PriceTag>();
+            currentObject = hit.collider.GetComponentInParent<PriceTag>();
             if(currentObject != null)
                 cooldownTimer = rayCooldown;
         }
@@ -54,6 +55,12 @@ public class TagReader : MonoBehaviour
         Gizmos.color = Color.green;
         foreach (RaycastHit hit in TargetObjects())
             Gizmos.DrawLine(transform.position, (hit.point));
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (drawGizmos)
+            OnDrawGizmosSelected();
     }
 
     private IEnumerable<RaycastHit> TargetObjects()

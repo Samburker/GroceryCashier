@@ -6,16 +6,19 @@ TagManager:
   tags:
   - Item
   - CinemachineTarget
+  - TitleScreen
+  - MenuButton
+  - Fluid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NavMeshArea
   - Water
   - UI
   - Player
   - Item
-  - 
+  - NPC
   - 
   - 
   - 

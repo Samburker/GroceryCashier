@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed3df2557b40184398174c1188ec3ea, type: 3}
+  m_Name: ShoppingList Day2
+  m_EditorClassIdentifier: 
+  wantedItemsMin: 2
+  wantedItemsMax: 10
+  items:
+  - required: 1
+    steal: 0
+    probability: 1
+    variants:
+    - {fileID: 11400000, guid: a49fae930c0f3674f9f5ce3195144de8, type: 2}
+  - required: 1
+    steal: 0
+    probability: 0.5
+    variants:
+    - {fileID: 11400000, guid: 7258d4f4bebe56347b39f50de8438d77, type: 2}
+  - required: 1
+    steal: 0
+    probability: 0.5
+    variants:
+    - {fileID: 11400000, guid: df239357337acfe4b84bb879ef401527, type: 2}
+  - required: 1
+    steal: 0
+    probability: 0.5
+    variants:
+    - {fileID: 11400000, guid: f7b6ade46a87b164686af4e021faa11d, type: 2}
+  - required: 1
+    steal: 0
+    probability: 1
+    variants:
+    - {fileID: 11400000, guid: 8526cb979f27fae4fb803ba72f1a9076, type: 2}
+  - required: 1
+    steal: 0
+    probability: 2
+    variants:
+    - {fileID: 11400000, guid: 1f265d152fae9e34e8460df413176587, type: 2}
