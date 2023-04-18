@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8936083893373571809}
   m_Layer: 0
   m_Name: Particle System
-  m_TagString: Untagged
+  m_TagString: FireExtinguisherParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4007,7 +4007,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4059,7 +4059,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.1
+    radiusScale: 0.49
     collidesWith:
       serializedVersion: 2
       m_Bits: 4294967295

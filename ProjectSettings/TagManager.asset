@@ -10,6 +10,9 @@ TagManager:
   - MenuButton
   - Fluid
   - FireExtinguisher
+  - Fire
+  - ExtinguisherParticles
+  - FireExtinguisherParticle
   layers:
   - Default
   - TransparentFX
