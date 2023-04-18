@@ -18,12 +18,18 @@ public class FireExtinguisherController : MonoBehaviour
     private bool isPickedUp = false;
     private bool isEnabled = false;
     private GameObject pickupItem;
-    private AudioSource audioSource;
+    private AudioSource playerAudioSource;
+    private AudioSource extinguisherAudioSource;
 
     void Start()
     {
         fireExtinguisher.SetActive(false);
-        audioSource = GetComponent<AudioSource>();
+        playerAudioSource = GetComponent<AudioSource>();
+
+        // Add a new audio source component to the fireExtinguisher object
+        extinguisherAudioSource = fireExtinguisher.AddComponent<AudioSource>();
+        extinguisherAudioSource.spatialBlend = 1.0f;
+        extinguisherAudioSource.maxDistance = 10.0f;
     }
 
     void Update()
@@ -34,27 +40,28 @@ public class FireExtinguisherController : MonoBehaviour
             pickupItem.SetActive(false);
             fireExtinguisher.SetActive(true);
             isEnabled = true;
-            audioSource.PlayOneShot(pickupSound);
+            playerAudioSource.PlayOneShot(pickupSound);
         }
         else if (isPickedUp && Input.GetKeyDown(holsterKey))
         {
             isEnabled = !isEnabled;
             fireExtinguisher.SetActive(isEnabled);
-            audioSource.PlayOneShot(holsterSound);
+            playerAudioSource.PlayOneShot(holsterSound);
         }
 
         if (isPickedUp && isEnabled && Input.GetKey(sprayKey))
         {
             extinguisherParticles.SetActive(true);
-            if (!audioSource.isPlaying)
+            if (!extinguisherAudioSource.isPlaying)
             {
-                audioSource.PlayOneShot(spraySound);
+                extinguisherAudioSource.clip = spraySound;
+                extinguisherAudioSource.Play();
             }
         }
         else
         {
             extinguisherParticles.SetActive(false);
-            audioSource.Stop();
+            extinguisherAudioSource.Stop();
         }
     }
 
