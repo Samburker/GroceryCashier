@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2300002}
   - component: {fileID: 6400002}
   - component: {fileID: 9500000}
+  - component: {fileID: 1189749231098526039}
   m_Layer: 0
   m_Name: fire extinguisher
   m_TagString: Untagged
@@ -219,6 +220,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1189749231098526039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a6069f0664a3b4a833f5daf39ddd1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: fire
 --- !u!1 &1985253792284733570
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,7 +4084,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
     inside: 1
     outside: 0

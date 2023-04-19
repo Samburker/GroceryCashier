@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 437064}
   - component: {fileID: 19927412}
   - component: {fileID: 19883674}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RingOfFireSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4946,7 +4946,7 @@ GameObject:
   - component: {fileID: 407480}
   - component: {fileID: 19978708}
   - component: {fileID: 19821370}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RingOfFireSecondaryFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9565,7 +9565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 451452}
   - component: {fileID: 8281866}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RingOfFireSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9747,7 +9747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 499470}
   - component: {fileID: 10847730}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RingOfFireLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9842,9 +9842,10 @@ GameObject:
   - component: {fileID: 486202}
   - component: {fileID: 11471502}
   - component: {fileID: 11469812}
-  m_Layer: 8
+  - component: {fileID: 660390770401627824}
+  m_Layer: 0
   m_Name: RingOfFire
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9907,6 +9908,19 @@ MonoBehaviour:
   IntensityMaxRange:
     Minimum: 0
     Maximum: 8
+--- !u!65 &660390770401627824
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 1.36, z: 0}
 --- !u!1 &195822
 GameObject:
   m_ObjectHideFlags: 0
@@ -9918,7 +9932,7 @@ GameObject:
   - component: {fileID: 439712}
   - component: {fileID: 19921580}
   - component: {fileID: 19869400}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RingOfFireSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14619,7 +14633,7 @@ GameObject:
   - component: {fileID: 462742}
   - component: {fileID: 19912930}
   - component: {fileID: 19886008}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RingOfFireFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
