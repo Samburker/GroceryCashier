@@ -5,14 +5,11 @@ using UnityEngine;
 public class DestroyFire : MonoBehaviour
 {
     public string fireTag = "Fire"; // the tag of the objects to be destroyed
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        Debug.Log("COLLISION DETECTED");
-        if (other.CompareTag(fireTag))
+    private void OnParticleCollision(GameObject other)
         {
-            Destroy(other.gameObject);
+            if (other.CompareTag("exhaust"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
-}

@@ -9843,6 +9843,7 @@ GameObject:
   - component: {fileID: 11471502}
   - component: {fileID: 11469812}
   - component: {fileID: 660390770401627824}
+  - component: {fileID: 4108511915806467492}
   m_Layer: 0
   m_Name: RingOfFire
   m_TagString: Fire
@@ -9916,11 +9917,24 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168262}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
+  m_Size: {x: 1, y: 4, z: 1}
   m_Center: {x: 0, y: 1.36, z: 0}
+--- !u!114 &4108511915806467492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a6069f0664a3b4a833f5daf39ddd1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: Fire
 --- !u!1 &195822
 GameObject:
   m_ObjectHideFlags: 0
