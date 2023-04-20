@@ -9,6 +9,9 @@ public class ZipFinalBuildPostprocessor
     [PostProcessBuild(1000)]
     public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
     {
+#if DEBUG
+        return;
+#endif
         // Processing only windows builds
         if (target != BuildTarget.StandaloneWindows && target != BuildTarget.StandaloneWindows64)
             return;

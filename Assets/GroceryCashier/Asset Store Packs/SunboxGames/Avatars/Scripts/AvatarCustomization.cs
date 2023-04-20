@@ -594,7 +594,10 @@ namespace Sunbox.Avatars {
             }
 
             // Check if there is a hat and hair doesn't allow it
-            UClothingItem hatClothingInstance = CurrentBase.GetComponentsInChildren<UClothingItem>().Where(item => item.ClothingItem.SlotType == SlotType.Hat).FirstOrDefault();
+            var clothingItems = CurrentBase.GetComponentsInChildren<UClothingItem>();
+            if (clothingItems.Length == 0)
+                return;
+            UClothingItem hatClothingInstance = clothingItems.Where(item => item.ClothingItem.SlotType == SlotType.Hat).FirstOrDefault();
             if (hatClothingInstance != null && !hatClothingInstance.ClothingItem.IsEmpty && hairInstance.HairItem.HideHairWhenHatEquipped) {
                 _hairGameObject.SetActive(hatClothingInstance == null);
             }
