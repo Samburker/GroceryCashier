@@ -35,6 +35,22 @@ public class FireManager : MonoBehaviour
             return;
         }
 
+        // Check if all the fires have been destroyed
+        bool allFiresDestroyed = true;
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                allFiresDestroyed = false;
+                break;
+            }
+        }
+
+        if (allFiresDestroyed)
+        {
+            return;
+        }
+
         // Generate a random starting point within the specified boundaries if this is the first fire
         Vector3 spawnPosition = lastFirePosition;
         if (spawnPosition == Vector3.zero)
@@ -62,4 +78,6 @@ public class FireManager : MonoBehaviour
         // Schedule the next fire spawn
         Invoke("SpawnFire", fireSpawnInterval);
     }
+
+
 }
