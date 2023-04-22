@@ -11,7 +11,7 @@ TagManager:
   - Fluid
   - FireExtinguisher
   - Fire
-  - ExtinguisherParticles
+  - exhaust
   - FireExtinguisherParticle
   layers:
   - Default
