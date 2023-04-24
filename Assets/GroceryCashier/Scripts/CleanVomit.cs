@@ -2,12 +2,22 @@ using UnityEngine;
 
 public class CleanVomit : MonoBehaviour
 {
+    [Tooltip("The GameObject for the broom that will be used to clean the puddle.")]
     public GameObject broom;
+
+    [Tooltip("The speed at which the puddle is cleaned. Higher values make the puddle clean faster.")]
     public float cleaningSpeed = 1f;
+
+    [Tooltip("The percentage of the puddle that must be cleaned in order to complete the task.")]
+    [Range(0f, 1f)]
     public float cleaningThreshold = 0.95f;
+
+    [Tooltip("The amount of time (in seconds) that the player must spend cleaning the puddle in order to complete the task.")]
+    public float cleaningTime = 2f;
 
     private bool isCleaning;
     private float cleaningProgress;
+    private float cleaningTimer;
     private Collider puddleCollider;
 
     private void Start()
@@ -17,7 +27,6 @@ public class CleanVomit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("CLEAN CLEAN");
         if (other.gameObject == broom)
         {
             isCleaning = true;
@@ -30,6 +39,7 @@ public class CleanVomit : MonoBehaviour
         {
             isCleaning = false;
             cleaningProgress = 0f;
+            cleaningTimer = 0f;
         }
     }
 
@@ -42,8 +52,21 @@ public class CleanVomit : MonoBehaviour
 
             if (cleaningProgress >= cleaningThreshold)
             {
-                Clean();
+                cleaningTimer += Time.fixedDeltaTime;
+                if (cleaningTimer >= cleaningTime)
+                {
+                    Clean();
+                }
             }
+            else
+            {
+                cleaningTimer = 0f;
+            }
+        }
+        else
+        {
+            cleaningProgress = 0f;
+            cleaningTimer = 0f;
         }
     }
 
