@@ -15,14 +15,23 @@ public class CleanVomit : MonoBehaviour
     [Tooltip("The amount of time (in seconds) that the player must spend cleaning the puddle in order to complete the task.")]
     public float cleaningTime = 2f;
 
+    [Tooltip("An array of cleaning sounds that will be randomly played when cleaning the puddle.")]
+    public AudioClip[] cleaningSounds;
+
+    [Tooltip("The sound that will be played when the puddle is completely cleaned.")]
+    public AudioClip cleanedSound;
+
     private bool isCleaning;
     private float cleaningProgress;
     private float cleaningTimer;
     private Collider puddleCollider;
+    private AudioSource broomAudioSource;
+    private bool canPlaySound = true;
 
     private void Start()
     {
         puddleCollider = GetComponent<Collider>();
+        broomAudioSource = broom.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +39,7 @@ public class CleanVomit : MonoBehaviour
         if (other.gameObject == broom)
         {
             isCleaning = true;
+            PlayRandomCleaningSound();
         }
     }
 
@@ -62,17 +72,48 @@ public class CleanVomit : MonoBehaviour
             {
                 cleaningTimer = 0f;
             }
+
+            if (canPlaySound)
+            {
+                PlayRandomCleaningSound();
+                canPlaySound = false;
+            }
         }
         else
         {
             cleaningProgress = 0f;
             cleaningTimer = 0f;
+            canPlaySound = true;
         }
     }
 
     private void Clean()
     {
+        PlayCleanedSound();
         Destroy(gameObject);
-        // add code to play a cleaning sound, give points to the player, etc.
+        // add code to give points to the player, etc.
+    }
+
+    private void PlayRandomCleaningSound()
+    {
+        if (cleaningSounds.Length > 0 && broomAudioSource != null)
+        {
+            int randomIndex = Random.Range(0, cleaningSounds.Length);
+            broomAudioSource.PlayOneShot(cleaningSounds[randomIndex]);
+            Invoke("EnableSound", cleaningSounds[randomIndex].length);
+        }
+    }
+
+    private void PlayCleanedSound()
+    {
+        if (cleanedSound != null && broomAudioSource != null)
+        {
+            broomAudioSource.PlayOneShot(cleanedSound);
+        }
+    }
+
+    private void EnableSound()
+    {
+        canPlaySound = true;
     }
 }
