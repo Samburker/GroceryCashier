@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5618430134340886362}
   - component: {fileID: 5618430134340886363}
   - component: {fileID: 5618430134340886360}
+  - component: {fileID: 486617005}
   m_Layer: 0
   m_Name: VOMIT
   m_TagString: Vomit
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5618430134340886361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.68, y: 0.031, z: 13.448341}
-  m_LocalScale: {x: 3, y: -1.45, z: 3}
+  m_LocalScale: {x: 1.04, y: -1.45, z: 1.34}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,3 +98,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &486617005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618430134340886361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d85484bc560594eac9baff0604d76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  broom: {fileID: 0}
+  cleaningSpeed: 1
+  cleaningThreshold: 0.95
+  cleaningTime: 5
+  cleaningSounds:
+  - {fileID: 8300000, guid: 79f7675f71f187c43b4b0442d4b62dd0, type: 3}
+  - {fileID: 8300000, guid: a823cfba2fae617499b0397f5d4f28e7, type: 3}
+  - {fileID: 8300000, guid: 2209242d6a903834c9601e5c90477435, type: 3}
+  cleanedSound: {fileID: 8300000, guid: 66a3016708a12a0439432658cd55d73a, type: 3}

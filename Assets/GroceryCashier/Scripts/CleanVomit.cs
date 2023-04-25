@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CleanVomit : MonoBehaviour
 {
-    [Tooltip("The GameObject for the broom that will be used to clean the puddle.")]
+    //[Tooltip("The GameObject for the broom that will be used to clean the puddle.")]
     public GameObject broom;
 
     [Tooltip("The speed at which the puddle is cleaned. Higher values make the puddle clean faster.")]
@@ -36,7 +36,7 @@ public class CleanVomit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == broom)
+        if (other.CompareTag("broom"))
         {
             isCleaning = true;
             PlayRandomCleaningSound();
@@ -45,7 +45,7 @@ public class CleanVomit : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == broom)
+        if (other.CompareTag("broom"))
         {
             isCleaning = false;
             cleaningProgress = 0f;
