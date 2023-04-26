@@ -32,11 +32,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: df239357337acfe4b84bb879ef401527, type: 2}
   - required: 1
     steal: 0
-    probability: 0.5
-    variants:
-    - {fileID: 11400000, guid: f7b6ade46a87b164686af4e021faa11d, type: 2}
-  - required: 1
-    steal: 0
     probability: 1
     variants:
     - {fileID: 11400000, guid: 8526cb979f27fae4fb803ba72f1a9076, type: 2}
