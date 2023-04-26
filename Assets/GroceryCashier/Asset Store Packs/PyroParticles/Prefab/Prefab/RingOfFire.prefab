@@ -9846,7 +9846,7 @@ GameObject:
   - component: {fileID: 4108511915806467492}
   m_Layer: 0
   m_Name: RingOfFire
-  m_TagString: Fire
+  m_TagString: RingOfFire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

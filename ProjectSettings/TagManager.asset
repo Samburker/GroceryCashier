@@ -15,6 +15,7 @@ TagManager:
   - FireExtinguisherParticle
   - broom
   - Vomit
+  - RingOfFire
   layers:
   - Default
   - TransparentFX
