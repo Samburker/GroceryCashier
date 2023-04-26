@@ -17,6 +17,7 @@ public class HelicopterController : MonoBehaviour
     void Start()
     {
         startingPosition = transform.position;
+        targetPosition = GetRandomPosition();
         targetRotation = transform.rotation;
     }
 
